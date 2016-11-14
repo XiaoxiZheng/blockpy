@@ -32,13 +32,13 @@ Installation
 First, clone it locally. This could take a little while.
 
     > git clone https://github.com/RealTimeWeb/blockpy.git
-    
 
-You'll need to build Skulpt and Blockly. Both of these depend on the Closure Compiler, so you'll need to put that in the empty `closure-library` folder. You can follow the [Blockly instructions here] (https://developers.google.com/blockly/hacking/closure) , but the gist will be:
+
+You'll need to build Skulpt and Blockly. Both of these depend on the Closure Compiler, so you'll need to put that in the empty `closure-library` folder. You can follow the [Blockly instructions here] (https://developers.google.com/blockly/hacking/closure) , but the gist will be (The following command no longer works, but in a nutshell, grab a copy of the closure-library and add it to your root folder - as indicated on Blockly's page):
 
     > wget https://github.com/google/closure-library/zipball/master -O closure.zip
     > unzip closure.zip
-    
+
 CD into the new blockpy directory
 
     > cd blockpy/
@@ -51,53 +51,58 @@ Replace the contents of that file with the information found here: http://pasteb
 
 Next, you'll need to build Blockly:
 
-    > cp blockly/msg/en.js en.js
+    > cp blockly/msg/js/en.js en.js
     > cd blockly
     > python build.py
     > cd ..
     > mv en.js blockly/msg/en.js
-    
+
 
 And then you'll build Skulpt:
 
     > cd skulpt
     > python skulpt.py dist
     > cd ..
-    
-If you are on windows, you may encounter the message "No gzip executable", you can safely ignore this.
-    
-And now you should be able to try out the example file!
 
-    > start blockpy_new.html
-    
+If you are on windows, you may encounter the message "No gzip executable", you can safely ignore this.
+
+And now you should be able to try out the example file!
+    > python example-server.py (This will run the default blockpy_new.html @ localhost http://127.0.0.1:8000/)
+    > start blockpy_new.html (Old)
+
 The server has its own requirements.txt and uses a `python manage.py runserver`
 
 If you make edits to either Blockly or Skulpt, you'll need to rerun their build commands. Simiarly, if you edit ``src/interface.html`` than you'll need to rebuild it:
 
     > python build.py
-    
+
 Otherwise, you should be able to edit the ``src/*.js`` files freely. To get a sense of the dependencies, check out the ``blockpy_new.html`` file and then the ``src/main.js`` file. These should be good starting points.
 
+
+Helpful Resources
+--------
+
+[Blockly Github Wiki] (https://github.com/google/blockly/wiki)
+[Blockly Developers Page ] (https://developers.google.com/blockly/guides/overview)
+Example User input: Visit the index.html under [Blockly->demos->code] folder. [Text] -> [Prompt for [text] with [message]]
 
 Commands
 --------
 
 Both Blockly and Skulpt are subtrees.
 
-Push changes to the subtrees' repos: 
+Push changes to the subtrees' repos: (Non-applicable for LearnDialogue. We are not changing the source code, and most likely our code will never get approved. If interested in fixing bugs, visit Block's Github issues and follow standards bug-fix flow.)
 
     > git subtree push --prefix=skulpt/ --squash skulpt master
     > git subtree push --prefix=blockly/ --squash blockly master
     > git subtree push --prefix=server/ --squash server master
     > git subtree push --prefix=server/static/blockly-games --squash blockly_games master
-    
-Pull changes from upstream repos (e.g., official Blockly and Skulpt, our production server):
+
+Pull changes from upstream repos (e.g., official Blockly and Skulpt, our production server) (Ideally Pull before any development happens to ensure our code is up to date. Pull often if possible):
 
     > git subtree pull --prefix=skulpt --squash skulpt_upstream master
     > git subtree pull --prefix=blockly --squash blockly_upstream master
     > git subtree pull --prefix=server --squash server master
     > git subtree pull --prefix=server/static/blockly-games --squash blockly_games master
-    
-Note: if you get an error about a "fatal entry", make sure you don't have a trailing slash on the prefix!
 
-        
+Note: if you get an error about a "fatal entry", make sure you don't have a trailing slash on the prefix!
