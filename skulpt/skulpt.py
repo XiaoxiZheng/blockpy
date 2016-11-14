@@ -670,14 +670,14 @@ function quit(rc)
     out.close()
     print ". Built %s" % outfn
 
-def getInternalCodeAsJson():		
-    ret = {}		
-    ret['files'] = {}		
-    for f in ["src/" + x for x in os.listdir("src") if os.path.splitext(x)[1] == ".py" if os.path.isfile("src/" + x)]:		
-        ext = os.path.splitext(f)[1]		
-        if ext == ".py":		
-            f = f.replace("\\", "/")		
-            ret['files'][f] = open(f).read()		
+def getInternalCodeAsJson():
+    ret = {}
+    ret['files'] = {}
+    for f in ["src/" + x for x in os.listdir("src") if os.path.splitext(x)[1] == ".py" if os.path.isfile("src/" + x)]:
+        ext = os.path.splitext(f)[1]
+        if ext == ".py":
+            f = f.replace("\\", "/")
+            ret['files'][f] = open(f).read()
     return "Sk.internalPy=" + json.dumps(ret)
 
 def getBuiltinsAsJson(options):
@@ -872,7 +872,7 @@ def run_in_browser(fn, options):
 
     with open('support/run_template.html') as tpfile:
         page = tpfile.read()
-        page = page % dict(code=prog,scripts=scripts, root='', debug_mode='true')
+        page = page % dict(code=prog,scripts=scripts,debug_mode=str(debug_mode).lower(),root="")
 
     with open("{0}/run.html".format(RUN_DIR),"w") as htmlfile:
         htmlfile.write(page)
@@ -1064,7 +1064,7 @@ Sk.misceval.asyncToPromise(function() {{
 }}, function(e) {{
     //printError(e);
     print(e);
-}});""".format(student_code_filename=student_code, 
+}});""".format(student_code_filename=student_code,
                instructor_code_filename=instructor_code))
     f.close()
     command = jsengine.split(" ")+getFileList(FILE_TYPE_TEST)+["../libs/math.0.19.0.min.js", "../libs/crime_data.js", "support/tmp/run.js"]
@@ -1368,8 +1368,8 @@ def main():
         cmd = "help"
     else:
         cmd = sys.argv[1]
-        
-    with open("src/internalpython.js", "w") as f:		
+
+    with open("src/internalpython.js", "w") as f:
         f.write(getInternalCodeAsJson() + ";")
 
     if cmd == "test":
