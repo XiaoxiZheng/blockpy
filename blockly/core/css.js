@@ -219,7 +219,7 @@ Blockly.Css.CONTENT = [
     'font-family: sans-serif;',
     'font-size: 11pt;',
   '}',
-  
+
   '.blocklyTextCode {',
   '  font-family: monospace;',
   '}',

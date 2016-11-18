@@ -3,8 +3,9 @@ html, body {
 }
 
 body {
-  background-color: #fff;
+  background-color: #1b3131;
   font-family: sans-serif;
+  color: #64ede9;
   margin: 0;
   overflow: hidden;
 }
@@ -64,15 +65,20 @@ h1 {
   margin-left: 5px;
   margin-right: 5px;
 }
+a {
+    color: #41817e;
+    text-decoration: underline;
+    cursor: auto;
+}
 
 /* Tabs */
 #tabRow>td {
-  border: 1px solid #ccc;
+  border: 1px solid #54eee7;
   border-bottom: none;
 }
 td.tabon {
-  border-bottom-color: #ddd !important;
-  background-color: #ddd;
+  border-bottom-color: #54eee7 !important;
+  background-color: #1b3131;
   padding: 5px 19px;
 }
 td.taboff {
@@ -80,7 +86,7 @@ td.taboff {
   padding: 5px 19px;
 }
 td.taboff:hover {
-  background-color: #eee;
+  background-color: #41817e;
 }
 td.tabmin {
   border-top-style: none !important;
@@ -122,7 +128,7 @@ pre.content {
   overflow: scroll;
 }
 #content_blocks {
-  padding: 0;
+  padding: 5;
 }
 .blocklySvg {
   border-top: none !important;
@@ -160,4 +166,15 @@ button {
 }
 .run {
   background-position: -42px 0px;
+}
+
+div.blocklyToolboxDiv{
+  background-color: #1b3131;
+}
+
+div.blocklyTreeRow{
+  background-color: #1b3131;
+}
+.blocklyTreeRow:hover{
+  background-color: #41817e !important;
 }

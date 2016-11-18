@@ -393,7 +393,7 @@ Code.init = function() {
       {grid:
           {spacing: 25,
            length: 3,
-           colour: '#ccc',
+           colour: '#5bcbc8', //Engage Blue -- the dots within the text block
            snap: true},
        media: '../../media/',
        rtl: rtl,
